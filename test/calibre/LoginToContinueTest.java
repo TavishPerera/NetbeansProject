@@ -44,9 +44,6 @@ public class LoginToContinueTest {
     public void testLoginFunction() {
         System.out.println("loginFunction");
         LoginToContinue instance = new LoginToContinue();
-        String expected = "Hi";
-        String actual = null;
-        assertEquals(expected, actual);
         instance.loginFunction();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
