@@ -225,36 +225,34 @@ public class LoginToContinue extends javax.swing.JFrame {
         
         int result = 0;
         
-        if (loginUsername.getText().trim().length() == 0 || loginPassword.getText().trim().length() == 0) {
-            JOptionPane.showConfirmDialog(null, "All fields are required", "Alert", JOptionPane.CLOSED_OPTION);
-        } else {
-
-        String login = "SELECT user_Name, user_Password FROM users WHERE (user_Name =? and user_Password =?)";
-
         try {
             
-            pst = conn.prepareStatement(login);
+            if (loginUsername.getText().trim().length() == 0 || loginPassword.getText().trim().length() == 0) {
+            JOptionPane.showConfirmDialog(null, "All fields are required", "Alert", JOptionPane.CLOSED_OPTION);
+            
+        } else {
+            
+                String login = "SELECT user_Name, user_Password FROM users WHERE (user_Name =? and user_Password =?)";
+            
+                pst = conn.prepareStatement(login);
 
-            pst.setString(1, loginUsername.getText());
-            pst.setString(2, loginPassword.getText());
+                pst.setString(1, loginUsername.getText());
+                pst.setString(2, loginPassword.getText());
 
-            rs = pst.executeQuery();
+                rs = pst.executeQuery();
 
-            while (rs.next()) {
+                while (rs.next()) {
+                    result = result + 1;
+                }
 
-                result = result + 1;
-
+                if (result == 1) {
+                    changeWindow();
+                } else {
+                    JOptionPane.showConfirmDialog(null, "Username or Password Incorrect", "Alert", JOptionPane.CLOSED_OPTION);
+                }
             }
-
-            if (result == 1) {
-                changeWindow();
-            } else {
-                JOptionPane.showConfirmDialog(null, "Username or Password Incorrect", "Alert", JOptionPane.CLOSED_OPTION);
-            }
-
         } catch (HeadlessException | SQLException e) {
-
-        }
+            System.out.println("e");
         }
     }
 
