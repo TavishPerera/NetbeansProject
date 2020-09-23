@@ -223,6 +223,8 @@ public class LoginToContinue extends javax.swing.JFrame {
     //(accessed 12 April 2020)
     public void loginFunction() {
         
+        int result = 0;
+        
         if (loginUsername.getText().trim().length() == 0 || loginPassword.getText().trim().length() == 0) {
             JOptionPane.showConfirmDialog(null, "All fields are required", "Alert", JOptionPane.CLOSED_OPTION);
         } else {
@@ -230,9 +232,7 @@ public class LoginToContinue extends javax.swing.JFrame {
         String login = "SELECT user_Name, user_Password FROM users WHERE (user_Name =? and user_Password =?)";
 
         try {
-
-            int result = 0;
-
+            
             pst = conn.prepareStatement(login);
 
             pst.setString(1, loginUsername.getText());
