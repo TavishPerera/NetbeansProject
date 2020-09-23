@@ -252,7 +252,7 @@ public class LoginToContinue extends javax.swing.JFrame {
                 }
             }
         } catch (HeadlessException | SQLException e) {
-            System.out.println("e");
+            System.out.println(e);
         }
     }
 
